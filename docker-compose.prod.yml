@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  wartracker:
+    build: .
+    image: wartracker:latest
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - DB_PATH=/data/guild_data.db
+    volumes:
+      - data:/data
+    networks:
+      - wartracker-net
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /data/guild_data.db ] || exit 1"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+
+  backup:
+    build:
+      context: ./deploy
+      dockerfile: Dockerfile.backup
+    restart: unless-stopped
+    environment:
+      - DB_PATH=/data/guild_data.db
+      - BACKUP_DIR=/backups
+    volumes:
+      - data:/data:rw
+      - backups:/backups:rw
+    networks:
+      - wartracker-net
+
+volumes:
+  data:
+  backups:
+
+networks:
+  wartracker-net:
+    driver: bridge

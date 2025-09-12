@@ -7,5 +7,5 @@ type Member struct {
 	WarOrders    int
 	Lumber       int
 	Availability string
+	GuildRoleID  string
 }
-

@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  wartracker:
+    build: .
+    image: wartracker:latest
+    restart: always
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - DB_PATH=/data/guild_data.db
+    volumes:
+      - data:/data
+    networks:
+      - wartracker-net
+
+volumes:
+  data:
+
+networks:
+  wartracker-net:
+    driver: bridge

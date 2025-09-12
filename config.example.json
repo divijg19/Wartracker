@@ -1,0 +1,17 @@
+{
+    "BotToken": "YOUR_DISCORD_BOT_TOKEN_HERE",
+    "DBPath": "data/guild_data.db",
+    "TLSInsecureSkipVerify": false,
+    "CustomRootCAPath": "",
+    "Guilds": [
+        {
+            "GuildID": "123456789012345678",
+            "LeaderRoleIDs": [
+                "111111111111111111"
+            ],
+            "LeaderUserIDs": [
+                "222222222222222222"
+            ]
+        }
+    ]
+}

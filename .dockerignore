@@ -1,0 +1,9 @@
+# ignore local build and binary
+bin/
+**/data/
+*.db
+*.db-* 
+*.log
+**/vendor/
+**/.vscode/
+**/.idea/

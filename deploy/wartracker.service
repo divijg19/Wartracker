@@ -1,0 +1,28 @@
+[Unit]
+Description=Wartracker Discord Bot (Docker Compose)
+After=network.target docker.service
+
+[Service]
+Type=notify
+WorkingDirectory=/opt/wartracker
+Environment=COMPOSE_HTTP_TIMEOUT=200
+ExecStart=/usr/bin/docker compose -f /opt/wartracker/docker-compose.prod.yml up --remove-orphans
+ExecStop=/usr/bin/docker compose -f /opt/wartracker/docker-compose.prod.yml down
+Restart=on-failure
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target
+[Unit]
+Description=Wartracker Discord Bot (Docker Compose)
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/wartracker
+ExecStart=/usr/bin/docker compose up -d --build
+ExecStop=/usr/bin/docker compose down
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

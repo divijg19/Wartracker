@@ -1,0 +1,5 @@
+FROM alpine:3.19
+RUN apk add --no-cache bash sqlite sqlite-dev
+COPY backup_runner.sh /usr/local/bin/backup_runner.sh
+RUN chmod +x /usr/local/bin/backup_runner.sh
+CMD ["/usr/local/bin/backup_runner.sh"]
