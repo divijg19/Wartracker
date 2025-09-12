@@ -1,2 +1,8 @@
 .env
+data/
+*.db
+backups/
+/.vscode/
+bin/
+bot.exe.env
 config.json
