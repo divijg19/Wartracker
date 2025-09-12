@@ -1,5 +1,4 @@
 .dockerignore
-.env
 .env.example
 .gitignore
 Codebase.txt
@@ -9,8 +8,6 @@ README_DEPLOY.md
 bot.exe
 cmd/bot/main.go
 config.example.json
-config.json
-data/guild_data.db
 data/guild_data.db-shm
 data/guild_data.db-wal
 deploy/Dockerfile.backup
