@@ -3,7 +3,8 @@
 # Use the official Go builder image. If your environment cannot pull this tag
 # try another official tag (for example `golang:1.25` or `golang:1.25.1`) or a
 # pinned digest. The exact available tags depend on the registry mirror.
-FROM golang:1.25 AS builder
+# Use Microsoft Container Registry devcontainers image to avoid Docker Hub DNS/CDN issues
+FROM mcr.microsoft.com/devcontainers/go AS builder
 
 # Install sqlite3 dev and build tools for mattn/go-sqlite3
 RUN apt-get update && \
@@ -20,7 +21,7 @@ RUN CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -trimpath -o /bin/wartracker 
 
 ## Use a minimal, maintained runtime (distroless) to reduce attack surface.
 ## Distroless images don't include a shell; we only need CA certs to call Discord.
-FROM gcr.io/distroless/cc-debian11:nonroot
+FROM mcr.microsoft.com/devcontainers/base:bookworm
 
 COPY --from=builder /bin/wartracker /usr/local/bin/wartracker
 

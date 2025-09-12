@@ -98,11 +98,16 @@ func (b *Bot) registerSlashCommands() error {
 	}
 
 	guilds := b.Config.GuildList()
-	if len(guilds) == 0 {
-		return fmt.Errorf("no guilds configured")
-	}
+	// If no guilds configured, register global commands so the bot works after invite
 	appID := b.Session.State.User.ID
 	anyGuildOK := false
+	if len(guilds) == 0 {
+		if _, err := b.Session.ApplicationCommandBulkOverwrite(appID, "", commands); err != nil {
+			return fmt.Errorf("register global commands: %w", err)
+		}
+		log.Printf("Registered %d global commands (no guilds configured)", len(commands))
+		return nil
+	}
 	for _, g := range guilds {
 		if g.GuildID == "" {
 			continue

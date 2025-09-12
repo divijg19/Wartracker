@@ -100,8 +100,12 @@ func New(cfg *Config, db *storage.DB) (*Bot, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Minimal required intents: guilds and members (to read roles when needed)
-	s.Identify.Intents = discordgo.IntentsGuilds | discordgo.IntentsGuildMembers
+	// Minimal required intents. Members intent is privileged; allow disabling via env.
+	intents := discordgo.IntentsGuilds
+	if v := os.Getenv("ENABLE_GUILD_MEMBERS_INTENT"); v == "" || v == "1" || v == "true" || v == "TRUE" {
+		intents |= discordgo.IntentsGuildMembers
+	}
+	s.Identify.Intents = intents
 	// Configure HTTP client TLS if requested
 	if cfg.TLSInsecureSkipVerify || cfg.CustomRootCAPath != "" {
 		tlsCfg := &tls.Config{InsecureSkipVerify: cfg.TLSInsecureSkipVerify}

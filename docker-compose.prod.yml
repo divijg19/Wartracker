@@ -1,20 +1,18 @@
 services:
   wartracker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: wartracker:latest
     restart: unless-stopped
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - DB_PATH=/data/guild_data.db
+      - ENABLE_GUILD_MEMBERS_INTENT=1
     volumes:
       - data:/data
     networks:
       - wartracker-net
-    healthcheck:
-      test: ["CMD-SHELL", "[ -f /data/guild_data.db ] || exit 1"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
 
   backup:
     build:

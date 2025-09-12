@@ -14,6 +14,7 @@ deploy/Dockerfile.backup
 deploy/README.md
 deploy/backup_db.sh
 deploy/backup_runner.sh
+deploy/install_windows_service.ps1
 deploy/run_local.ps1
 deploy/systemd-run-binary.service
 deploy/wartracker.service
@@ -21,11 +22,6 @@ docker-compose.prod.yml
 docker-compose.yml
 go.mod
 go.sum
-guild-bot/config.json
-guild-bot/go.mod
-guild-bot/internal/bot/bot.go
-guild-bot/internal/storage/models.go
-guild-bot/internal/storage/sqlite.go
 internal/bot/bot.go
 internal/bot/command_handler.go
 internal/bot/commands.go

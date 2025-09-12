@@ -1,6 +1,6 @@
 module github.com/divijg19/Wartracker
 
-go 1.25.1
+go 1.25
 
 require (
 	github.com/bwmarrin/discordgo v0.29.0

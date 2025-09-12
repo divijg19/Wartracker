@@ -1,12 +1,14 @@
-version: "3.8"
 services:
   wartracker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: wartracker:latest
     restart: always
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - DB_PATH=/data/guild_data.db
+      - ENABLE_GUILD_MEMBERS_INTENT=1
     volumes:
       - data:/data
     networks:
