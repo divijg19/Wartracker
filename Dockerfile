@@ -1,9 +1,5 @@
 # Multi-stage Dockerfile for Wartracker bot
 # Builder: Debian-based so sqlite3 CGO build succeeds
-# Use the official Go builder image. If your environment cannot pull this tag
-# try another official tag (for example `golang:1.25` or `golang:1.25.1`) or a
-# pinned digest. The exact available tags depend on the registry mirror.
-# Use Microsoft Container Registry devcontainers image to avoid Docker Hub DNS/CDN issues
 FROM mcr.microsoft.com/devcontainers/go AS builder
 
 # Install sqlite3 dev and build tools for mattn/go-sqlite3
