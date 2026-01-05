@@ -1,5 +1,7 @@
 # War Tracker Discord Bot (Go)
 
+Dedicated in part to YArgit
+
 A Discord slash-command bot for a mobile gaming guild (<=25 members). Tracks member registration, war orders, lumber, and availability windows.
 
 ## Features
